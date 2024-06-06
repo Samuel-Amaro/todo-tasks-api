@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1717441354901,
+      "tag": "0000_legal_venus",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1717505192599,
+      "tag": "0001_complex_hellion",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1717509674634,
+      "tag": "0002_harsh_moonstone",
+      "breakpoints": true
+    }
+  ]
+}

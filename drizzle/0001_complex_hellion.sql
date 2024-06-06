@@ -1,0 +1,1 @@
+ALTER TABLE "todo" ALTER COLUMN "updated_at" SET DEFAULT now();
