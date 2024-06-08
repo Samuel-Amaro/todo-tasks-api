@@ -22,6 +22,13 @@
       "when": 1717509674634,
       "tag": "0002_harsh_moonstone",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1717809832209,
+      "tag": "0003_overconfident_captain_cross",
+      "breakpoints": true
     }
   ]
 }
