@@ -7,9 +7,19 @@ export const client = new Client({
   port: parseInt(import.meta.env.POSTGRES_PORT as string),
   user: import.meta.env.POSTGRES_USER,
   database: import.meta.env.POSTGRES_DB,
-  password: import.meta.env.POSTGRES_PASSWORD as string
-  //ssl: import.meta.env.MODE === "production" ? true : false,
+  password: import.meta.env.POSTGRES_PASSWORD as string,
+  ssl: getSSLValues(),
 });
+
+function getSSLValues() {
+  if (process.env.POSTGRES_CA) {
+    return {
+      ca: process.env.POSTGRES_CA,
+    };
+  }
+
+  return process.env.NODE_ENV === "production" ? true : false;
+}
 
 await client.connect();
 
