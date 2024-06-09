@@ -5,6 +5,7 @@ import { updateTodo } from "./routes/update-todo";
 import { getTodoDetails } from "./routes/get-todo-details";
 import { Elysia } from "elysia";
 import cors from "@elysiajs/cors";
+import { toggleTodo } from "./routes/toggle-todo";
 
 const app = new Elysia({ prefix: "/api/v1/tasks" })
     .use(
@@ -28,6 +29,7 @@ const app = new Elysia({ prefix: "/api/v1/tasks" })
   .use(deleteTodo)
   .use(updateTodo)
   .use(getTodoDetails)
+  .use(toggleTodo)
   .onError(({ code, error, set }) => {
     switch(code) {
       case 'VALIDATION': {
