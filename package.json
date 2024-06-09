@@ -9,16 +9,19 @@
     "migration:create": "bun drizzle-kit generate",
     "migration:up": "bun src/database/migrate.ts",
     "services:up": "docker compose -f docker-compose.yaml up -d",
-		"services:stop": "docker compose -f docker-compose.yaml stop",
-		"services:down": "docker compose -f docker-compose.yaml down",
+    "services:stop": "docker compose -f docker-compose.yaml stop",
+    "services:down": "docker compose -f docker-compose.yaml down",
     "wait-for-postgres": "bun src/scripts/wait-for-postgres.ts",
     "drizzle:studio": "bun drizzle-kit studio",
     "seed": "bun src/database/seed.ts"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.12.0",
+    "@typescript-eslint/parser": "^7.12.0",
     "drizzle-orm": "^0.31.0",
     "elysia": "latest",
+    "eslint-plugin-drizzle": "^0.2.3",
     "pg": "^8.11.5"
   },
   "devDependencies": {
