@@ -18,6 +18,6 @@ export const todo = pgTable("todo", {
   title: varchar("title", { length: 256 }).notNull(),
   description: text("description").notNull(),
   status: statusEnum("status").default("pending").notNull(),
-  created_at: timestamp("created_at").defaultNow().notNull(),
-  updated_at: timestamp("updated_at").defaultNow().notNull(),
+  created_at: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  updated_at: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
