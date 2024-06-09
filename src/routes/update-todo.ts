@@ -14,7 +14,7 @@ enum Status {
 export const updateTodo = new Elysia().put(
   "/:id",
   async ({ params: { id }, body, set }) => {
-    await db
+    const updatedTodo = await db
       .update(todo)
       .set({
         title: body.title,
@@ -22,7 +22,15 @@ export const updateTodo = new Elysia().put(
         status: body.status,
         updated_at: new Date(),
       })
-      .where(eq(todo.id, id));
+      .where(eq(todo.id, id)).returning();
+    if(updatedTodo.length === 0) {
+      set.status = 404
+      return {
+        code: "NOT_FOUND",
+        message: "Todo não encontrado"
+      }
+    }
+    set.status = 200
   },
   {
     params: t.Object({ id: t.Numeric() }),
