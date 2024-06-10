@@ -1,5 +1,5 @@
 {
-  "name": "local-library",
+  "name": "todo-tasks-api",
   "version": "1.0.50",
   "scripts": {
     "test": "bun test --watch",
