@@ -2,6 +2,7 @@ import { Elysia, t } from "elysia";
 import { db } from "../database/connection";
 import { todo, statusEnum } from "../database/schema";
 import { eq } from "drizzle-orm";
+import swagger from "@elysiajs/swagger";
 
 const status = [...statusEnum.enumValues] as const;
 
@@ -11,7 +12,7 @@ enum Status {
   completed = "completed",
 }
 
-export const updateTodo = new Elysia().put(
+export const updateTodo = new Elysia().use(swagger()).put(
   "/:id",
   async ({ params: { id }, body, set }) => {
     const updatedTodo = await db
@@ -22,24 +23,33 @@ export const updateTodo = new Elysia().put(
         status: body.status,
         updated_at: new Date(),
       })
-      .where(eq(todo.id, id)).returning();
-    if(updatedTodo.length === 0) {
-      set.status = 404
+      .where(eq(todo.id, id))
+      .returning();
+    if (updatedTodo.length === 0) {
+      set.status = 404;
       return {
         code: "NOT_FOUND",
-        message: "Todo não encontrado"
-      }
+        message: "Todo não encontrado",
+      };
     }
-    set.status = 200
+    set.status = 200;
   },
   {
     params: t.Object({ id: t.Numeric() }),
-    body: t.Object({
-      title: t.String({
-        minLength: 1,
-      }),
-      content: t.Optional(t.String()),
-      status: t.Optional(t.Enum(Status)),
-    }),
+    body: t.Object(
+      {
+        title: t.String({
+          minLength: 1,
+        }),
+        content: t.Optional(t.String()),
+        status: t.Optional(t.Enum(Status)),
+      },
+      {
+        description: "Espera-se um title",
+      }
+    ),
+    detail: {
+      summary: "Atualizar task",
+    },
   }
 );

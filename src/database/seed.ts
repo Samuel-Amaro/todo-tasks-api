@@ -1,7 +1,7 @@
 import { todo } from "./schema";
 import { db } from "./connection";
 
-const todos = [
+export const todos = [
   {
     title: "Comprar mantimentos",
     description:
@@ -67,4 +67,4 @@ await db.insert(todo).values(todos);
 
 console.log("✔ Created todos");
 
-console.log('Database seeded successfully!')
+console.log("Database seeded successfully!");

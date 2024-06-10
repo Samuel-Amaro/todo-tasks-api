@@ -2,7 +2,7 @@
   "name": "local-library",
   "version": "1.0.50",
   "scripts": {
-    "test": "bun test",
+    "test": "bun test --watch",
     "dev": "bun services:up && bun wait-for-postgres && bun migration:up && bun run --watch src/index.ts",
     "build": "bun build src/index.ts",
     "start": "NODE_ENV=production bun src/index.ts",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@elysiajs/cors": "^1.0.2",
+    "@elysiajs/swagger": "^1.0.5",
     "@typescript-eslint/eslint-plugin": "^7.12.0",
     "@typescript-eslint/parser": "^7.12.0",
     "drizzle-orm": "^0.31.0",
